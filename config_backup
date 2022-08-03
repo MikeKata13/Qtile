@@ -13,9 +13,7 @@ from typing import List  # noqa: F401from typing import List  # noqa: F401
 
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
 myTerm = "alacritty"      # My terminal of choice
-myBrowser = "librewolf"   # My browser of choice
-myClipboardManager = "gpaste-client ui" # My clipboard manager of choice
-myFileManager = "nemo" # My file manager of choice
+myBrowser = "firefox" # My browser of choice
 
 keys = [
          ### The essentials
@@ -23,21 +21,13 @@ keys = [
              lazy.spawn(myTerm),
              desc='Launches My Terminal'
              ),
-         Key([mod], "n",
-             lazy.spawn(myFileManager),
-             desc='Launches File Manager'
-             ),
-         Key([mod], "v",
-             lazy.spawn(myClipboardManager),
-             desc='Launches Clipboard Manager'
-             ),
          Key([mod], "s",
              lazy.spawn("rofi -show drun -show-icons"),
              desc='Run Launcher'
              ),
          Key([mod], "b",
              lazy.spawn(myBrowser),
-             desc='Browser'
+             desc='Firefox'
              ),
          Key([mod], "Tab",
              lazy.next_layout(),
@@ -101,10 +91,10 @@ keys = [
              lazy.layout.increase_nmaster(),
              desc='Expand window (MonadTall), increase number in master pane (Tile)'
              ),
-         #Key([mod], "n",
-             #lazy.layout.normalize(),
-             #desc='normalize window size ratios'
-             #),
+         Key([mod], "n",
+             lazy.layout.normalize(),
+             desc='normalize window size ratios'
+             ),
          Key([mod], "m",
              lazy.layout.maximize(),
              desc='toggle window between minimum and maximum sizes'
@@ -149,9 +139,9 @@ groups = [Group("WWW", layout='monadtall'),
 from libqtile.dgroups import simple_key_binder
 dgroups_key_binder = simple_key_binder("mod4")
 
-layout_theme = {"border_width": 1,
+layout_theme = {"border_width": 2,
                 "margin": 8,
-                "border_focus": "#51afef",
+                "border_focus": "e1acff",
                 "border_normal": "1D2330"
                 }
 
@@ -167,8 +157,8 @@ layouts = [
     #layout.Zoomy(**layout_theme),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
-    #layout.Stack(num_stacks=2),
-    #layout.RatioTile(**layout_theme),
+    layout.Stack(num_stacks=2),
+    layout.RatioTile(**layout_theme),
     layout.TreeTab(
          font = "Ubuntu",
          fontsize = 10,
@@ -242,7 +232,7 @@ def init_widgets_list():
                        padding_x = 3,
                        borderwidth = 3,
                        active = colors[2],
-                       inactive = colors[6],
+                       inactive = colors[7],
                        rounded = False,
                        highlight_color = colors[1],
                        highlight_method = "line",
@@ -302,29 +292,29 @@ def init_widgets_list():
                        text = '',
                        font = "Ubuntu Mono",
                        background = colors[0],
-                       foreground = colors[6],
+                       foreground = colors[3],
                        padding = 0,
                        fontsize = 37
                        ),
               widget.Net(
                        interface = "wlp2s0",
                        format = 'Net: {down} ↓↑ {up}',
-                       foreground = colors[0],
-                       background = colors[6],
+                       foreground = colors[1],
+                       background = colors[3],
                        padding = 5,
                        fontsize = 12
                        ),
               widget.TextBox(
                        text = '',
                        font = "Ubuntu Mono",
-                       background = colors[0],
-                       foreground = colors[6],
+                       background = colors[3],
+                       foreground = colors[4],
                        padding = 0,
                        fontsize = 37
                        ),
               widget.ThermalSensor(
                        foreground = colors[1],
-                       background = colors[6],
+                       background = colors[4],
                        threshold = 90,
                        fmt = 'Temp: {}',
                        padding = 5,
@@ -333,8 +323,8 @@ def init_widgets_list():
               widget.TextBox(
                        text='',
                        font = "Ubuntu Mono",
-                       background = colors[0],
-                       foreground = colors[6],
+                       background = colors[4],
+                       foreground = colors[5],
                        padding = 0,
                        fontsize = 37
                        ),
@@ -349,14 +339,14 @@ def init_widgets_list():
               widget.TextBox(
                        text = '',
                        font = "Ubuntu Mono",
-                       background = colors[0],
-                       foreground = colors[6],
+                       background = colors[6],
+                       foreground = colors[7],
                        padding = 0,
                        fontsize = 37
                        ),
               widget.Volume(
                        foreground = colors[1],
-                       background = colors[6],
+                       background = colors[7],
                        fmt = 'Vol: {}',
                        padding = 5,
                        fontsize = 12
@@ -364,8 +354,8 @@ def init_widgets_list():
               widget.TextBox(
                        text = '',
                        font = "Ubuntu Mono",
-                       background = colors[0],
-                       foreground = colors[6],
+                       background = colors[7],
+                       foreground = colors[8],
                        padding = 0,
                        fontsize = 37
                        ),
@@ -386,7 +376,7 @@ def init_widgets_list():
                       # ),
               widget.Clock(
                        foreground = colors[1],
-                       background = colors[6],
+                       background = colors[9],
                        format = "%A, %B %d - %H:%M ",
                        fontsize = 12
                        ),
